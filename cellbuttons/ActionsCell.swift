@@ -10,59 +10,47 @@ import UIKit
 
 final class ActionsCell: UITableViewCell {
 
-    @IBOutlet weak var button1: UIButton!
-    @IBOutlet weak var button2: UIButton!
-    @IBOutlet weak var button3: UIButton!
-    @IBOutlet weak var button4: UIButton!
+    @IBOutlet weak var wishlistButton: UIButton!
+    @IBOutlet weak var basketButton: UIButton!
+    @IBOutlet weak var buyButton: UIButton!
 
     var actions: PerformAction?
 
     override func awakeFromNib() {
-        button1.isAccessibilityElement = false
-        button2.isAccessibilityElement = false
-        button3.isAccessibilityElement = false
-        button4.isAccessibilityElement = false
+        wishlistButton.isAccessibilityElement = false
+        basketButton.isAccessibilityElement = false
+        buyButton.isAccessibilityElement = false
 
-        let action1 = UIAccessibilityCustomAction(name: "Action 1",
-                                                  image: UIImage(systemName: "1.circle")) { _ in
-            self.actions?.action(.one)
+        let wishlist = UIAccessibilityCustomAction(name: "Add to Wishlist",
+                                                  image: UIImage(systemName: "wand.and.stars")) { _ in
+            self.actions?.action(.wishlist)
             return true
         }
 
-        let action2 = UIAccessibilityCustomAction(name: "Action 2",
-                                                  image: UIImage(systemName: "2.circle")) { _ in
-            self.actions?.action(.two)
+        let basket = UIAccessibilityCustomAction(name: "Add to Basket",
+                                                  image: UIImage(systemName: "bag.badge.plus")) { _ in
+            self.actions?.action(.basket)
             return true
         }
 
-        let action3 = UIAccessibilityCustomAction(name: "Action 3",
-                                                  image: UIImage(systemName: "3.circle")) { _ in
-            self.actions?.action(.three)
+        let buyNow = UIAccessibilityCustomAction(name: "Buy Now",
+                                                  image: UIImage(systemName: "creditcard")) { _ in
+            self.actions?.action(.buyNow)
             return true
         }
 
-        let action4 = UIAccessibilityCustomAction(name: "Action 4",
-                                                  image: UIImage(systemName: "4.circle")) { _ in
-            self.actions?.action(.four)
-            return true
-        }
-
-        accessibilityCustomActions = [action1, action2, action3, action4]
+        accessibilityCustomActions = [wishlist, basket, buyNow]
     }
 
     @IBAction func action1Pressed(_ sender: Any) {
-        actions?.action(.one)
+        actions?.action(.wishlist)
     }
 
     @IBAction func action2Pressed(_ sender: Any) {
-        actions?.action(.two)
+        actions?.action(.basket)
     }
 
     @IBAction func action3Pressed(_ sender: Any) {
-        actions?.action(.three)
-    }
-
-    @IBAction func action4Pressed(_ sender: Any) {
-        actions?.action(.four)
+        actions?.action(.buyNow)
     }
 }

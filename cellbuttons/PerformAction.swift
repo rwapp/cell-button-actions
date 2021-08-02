@@ -9,7 +9,20 @@ import Foundation
 import UIKit
 
 enum Action: String {
-    case one, two, three, four
+    case wishlist, basket, buyNow
+
+    var description: String {
+
+        switch self {
+        case .wishlist:
+            return "Added to wishlist"
+        case .basket:
+            return "Added to basket"
+        case .buyNow:
+            return "Buy now"
+        }
+
+    }
 }
 
 final class PerformAction: NSObject {
@@ -22,7 +35,7 @@ final class PerformAction: NSObject {
 
     func action(_ action: Action) {
         let alert = UIAlertController(title: "Action chosen",
-                          message: "Action \(action.rawValue).",
+                                      message: action.description,
                           preferredStyle: .alert)
         let action = UIAlertAction(title: "OK",
                                    style: .default) {_ in

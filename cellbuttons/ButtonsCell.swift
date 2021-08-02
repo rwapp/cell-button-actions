@@ -13,20 +13,14 @@ final class ButtonsCell: UITableViewCell {
     var actions: PerformAction?
 
     @IBAction func action1Pressed(_ sender: Any) {
-        actions?.action(.one)
+        actions?.action(.wishlist)
     }
 
     @IBAction func action2Pressed(_ sender: Any) {
-        actions?.action(.two)
+        actions?.action(.basket)
     }
 
     @IBAction func action3Pressed(_ sender: Any) {
-        actions?.action(.three)
+        actions?.action(.buyNow)
     }
-
-    @IBAction func action4Pressed(_ sender: Any) {
-        actions?.action(.four)
-    }
-
-
 }
